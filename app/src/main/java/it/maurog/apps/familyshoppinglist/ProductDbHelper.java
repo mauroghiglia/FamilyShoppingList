@@ -48,7 +48,7 @@ public class ProductDbHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertPerson(String name, String gender, int age) {
+    public boolean insertPerson(String name) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -66,7 +66,7 @@ public class ProductDbHelper extends SQLiteOpenHelper {
         return numRows;
     }
 
-    public boolean updatePerson(Integer id, String name, String gender, int age) {
+    public boolean updatePerson(Integer id, String name) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(PERSON_COLUMN_NAME, name);

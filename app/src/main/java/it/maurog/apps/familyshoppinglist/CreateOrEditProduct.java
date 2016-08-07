@@ -22,25 +22,25 @@ public class CreateOrEditProduct extends AppCompatActivity implements View.OnCli
 
     private ProductDbHelper dbHelper ;
     EditText nameEditText;
-    EditText genderEditText;
-    EditText ageEditText;
+    //EditText genderEditText;
+    //EditText ageEditText;
 
     Button saveButton;
     LinearLayout buttonLayout;
     Button editButton, deleteButton;
 
-    int personID;
+    int productID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        personID = getIntent().getIntExtra(MainActivity.KEY_EXTRA_PRODUCT_ID, 0);
+        productID = getIntent().getIntExtra(MainActivity.KEY_EXTRA_PRODUCT_ID, 0);
 
         setContentView(R.layout.activity_edit);
         nameEditText = (EditText) findViewById(R.id.editTextName);
-        genderEditText = (EditText) findViewById(R.id.editTextGender);
-        ageEditText = (EditText) findViewById(R.id.editTextAge);
+        //genderEditText = (EditText) findViewById(R.id.editTextGender);
+        //ageEditText = (EditText) findViewById(R.id.editTextAge);
 
         saveButton = (Button) findViewById(R.id.saveButton);
         saveButton.setOnClickListener(this);
@@ -52,11 +52,11 @@ public class CreateOrEditProduct extends AppCompatActivity implements View.OnCli
 
         dbHelper = new ProductDbHelper(this);
 
-        if(personID > 0) {
+        if(productID > 0) {
             saveButton.setVisibility(View.GONE);
             buttonLayout.setVisibility(View.VISIBLE);
 
-            Cursor rs = dbHelper.getPerson(personID);
+            Cursor rs = dbHelper.getPerson(productID);
             rs.moveToFirst();
             String personName = rs.getString(rs.getColumnIndex(ProductDbHelper.PERSON_COLUMN_NAME));
             //String personGender = rs.getString(rs.getColumnIndex(ProductDbHelper.PERSON_COLUMN_GENDER));
@@ -92,20 +92,20 @@ public class CreateOrEditProduct extends AppCompatActivity implements View.OnCli
                 nameEditText.setFocusableInTouchMode(true);
                 nameEditText.setClickable(true);
 
-                genderEditText.setEnabled(true);
-                genderEditText.setFocusableInTouchMode(true);
-                genderEditText.setClickable(true);
+                //genderEditText.setEnabled(true);
+                //genderEditText.setFocusableInTouchMode(true);
+                //genderEditText.setClickable(true);
 
-                ageEditText.setEnabled(true);
-                ageEditText.setFocusableInTouchMode(true);
-                ageEditText.setClickable(true);
+                //ageEditText.setEnabled(true);
+                //ageEditText.setFocusableInTouchMode(true);
+                //ageEditText.setClickable(true);
                 return;
             case R.id.deleteButton:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage(R.string.deletePerson)
                         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                dbHelper.deletePerson(personID);
+                                dbHelper.deletePerson(productID);
                                 Toast.makeText(getApplicationContext(), "Deleted Successfully", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -125,10 +125,8 @@ public class CreateOrEditProduct extends AppCompatActivity implements View.OnCli
     }
 
     public void persistPerson() {
-        if(personID > 0) {
-            if(dbHelper.updatePerson(personID, nameEditText.getText().toString(),
-                    genderEditText.getText().toString(),
-                    Integer.parseInt(ageEditText.getText().toString()))) {
+        if(productID > 0) {
+            if(dbHelper.updatePerson(productID, nameEditText.getText().toString())) {
                 Toast.makeText(getApplicationContext(), "Person Update Successful", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -139,9 +137,7 @@ public class CreateOrEditProduct extends AppCompatActivity implements View.OnCli
             }
         }
         else {
-            if(dbHelper.insertPerson(nameEditText.getText().toString(),
-                    genderEditText.getText().toString(),
-                    Integer.parseInt(ageEditText.getText().toString()))) {
+            if(dbHelper.insertPerson(nameEditText.getText().toString())) {
                 Toast.makeText(getApplicationContext(), "Person Inserted", Toast.LENGTH_SHORT).show();
             }
             else{

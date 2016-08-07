@@ -21,29 +21,8 @@
             android:ems="10"
             android:inputType="text"
             android:textSize="@dimen/text_size" >
-
             <requestFocus />
         </EditText>
-
-        <EditText
-            android:id="@+id/editTextGender"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/editTextName"
-            android:layout_below="@+id/editTextName"
-            android:ems="10"
-            android:inputType="text"
-            android:textSize="@dimen/text_size" />
-
-        <EditText
-            android:id="@+id/editTextAge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/editTextName"
-            android:layout_below="@+id/editTextGender"
-            android:ems="10"
-            android:inputType="numberDecimal"
-            android:textSize="@dimen/text_size" />
 
         <TextView
             android:id="@+id/textViewName"
@@ -53,26 +32,6 @@
             android:layout_toRightOf="@+id/editTextName"
             android:layout_alignParentLeft="true"
             android:text="@string/name"
-            android:textSize="@dimen/text_size" />
-
-        <TextView
-            android:id="@+id/textViewGender"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/editTextGender"
-            android:layout_toRightOf="@+id/editTextGender"
-            android:layout_alignParentLeft="true"
-            android:text="@string/gender"
-            android:textSize="@dimen/text_size" />
-
-        <TextView
-            android:id="@+id/textViewAge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/editTextAge"
-            android:layout_toRightOf="@+id/editTextAge"
-            android:layout_alignParentLeft="true"
-            android:text="@string/age"
             android:textSize="@dimen/text_size" />
 
         <Button
